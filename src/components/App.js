@@ -142,6 +142,7 @@ const states = [{
 
 
 
+
 function App() {
   const [stateIndex, setStateIndex] = useState(0);
   const [cityIndex, setCityIndex] = useState(0);
@@ -153,62 +154,50 @@ function App() {
 
   return (
     <div id="main">
-      
-<select
-  id="state"
-  value={String(stateIndex)}
-  onChange={(e) => {
-    setStateIndex(Number(e.target.value));
-    setCityIndex(0);
-    setLandmarkIndex(0);
-  }}
->
-  {states.map((state, index) => (
-    <option key={index} value={String(index)}>
-      {state.name}
-    </option>
-  ))}
-</select>
+      <select
+        id="state"
+        value={String(stateIndex)}
+        onChange={(e) => {
+          setStateIndex(Number(e.target.value));
+          setCityIndex(0);
+          setLandmarkIndex(0);
+        }}
+      >
+        {states.map((state, index) => (
+          <option key={index} value={String(index)}>
+            {state.name}
+          </option>
+        ))}
+      </select>
 
-<select
-  id="city"
-  value={String(cityIndex)}
-  onChange={(e) => {
-    setCityIndex(Number(e.target.value));
-    setLandmarkIndex(0);
-  }}
->
-  {selectedState.city.map((city, index) => (
-    <option key={index} value={String(index)}>
-      {city.name}
-    </option>
-  ))}
-</select>
+      <div id="state-name">{selectedState.name}</div>
+      <div id="state-description">{selectedState.description}</div>
 
-<select
-  id="landmark"
-  value={String(landmarkIndex)}
-  onChange={(e) => setLandmarkIndex(Number(e.target.value))}
->
-  {selectedCity.landmarks.map((landmark, index) => (
-    <option key={index} value={String(index)}>
-      {landmark.name}
-    </option>
-  ))}
-</select>
-
+      <select
+        id="city"
+        value={String(cityIndex)}
+        onChange={(e) => {
+          setCityIndex(Number(e.target.value));
+          setLandmarkIndex(0);
+        }}
+      >
+        {selectedState.city.map((city, index) => (
+          <option key={index} value={String(index)}>
+            {city.name}
+          </option>
+        ))}
+      </select>
 
       <div id="city-name">{selectedCity.name}</div>
       <div id="city-description">{selectedCity.description}</div>
 
       <select
         id="landmark"
-        value={landmarkIndex}
-        defaultValue={0}
+        value={String(landmarkIndex)}
         onChange={(e) => setLandmarkIndex(Number(e.target.value))}
       >
         {selectedCity.landmarks.map((landmark, index) => (
-          <option key={index} value={index}>
+          <option key={index} value={String(index)}>
             {landmark.name}
           </option>
         ))}
@@ -221,6 +210,9 @@ function App() {
     </div>
   );
 }
+
+
+
 
 
 

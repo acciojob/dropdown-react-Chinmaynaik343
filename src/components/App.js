@@ -141,6 +141,7 @@ const states = [{
 
 
 
+
 function App() {
   const [stateIndex, setStateIndex] = useState(0);
   const [cityIndex, setCityIndex] = useState(0);
@@ -155,6 +156,7 @@ function App() {
       <select
         id="state"
         value={stateIndex}
+        defaultValue={0}
         onChange={(e) => {
           setStateIndex(Number(e.target.value));
           setCityIndex(0);
@@ -162,7 +164,7 @@ function App() {
         }}
       >
         {states.map((state, index) => (
-          <option value={index} key={index}>
+          <option key={index} value={index}>
             {state.name}
           </option>
         ))}
@@ -174,13 +176,14 @@ function App() {
       <select
         id="city"
         value={cityIndex}
+        defaultValue={0}
         onChange={(e) => {
           setCityIndex(Number(e.target.value));
           setLandmarkIndex(0);
         }}
       >
         {selectedState.city.map((city, index) => (
-          <option value={index} key={index}>
+          <option key={index} value={index}>
             {city.name}
           </option>
         ))}
@@ -192,10 +195,11 @@ function App() {
       <select
         id="landmark"
         value={landmarkIndex}
+        defaultValue={0}
         onChange={(e) => setLandmarkIndex(Number(e.target.value))}
       >
         {selectedCity.landmarks.map((landmark, index) => (
-          <option value={index} key={index}>
+          <option key={index} value={index}>
             {landmark.name}
           </option>
         ))}
@@ -208,6 +212,8 @@ function App() {
     </div>
   );
 }
+
+
 
 
 

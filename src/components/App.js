@@ -153,41 +153,50 @@ function App() {
 
   return (
     <div id="main">
-      <select
-        id="state"
-        value={stateIndex}
-        defaultValue={0}
-        onChange={(e) => {
-          setStateIndex(Number(e.target.value));
-          setCityIndex(0);
-          setLandmarkIndex(0);
-        }}
-      >
-        {states.map((state, index) => (
-          <option key={index} value={index}>
-            {state.name}
-          </option>
-        ))}
-      </select>
+      
+<select
+  id="state"
+  value={String(stateIndex)}
+  onChange={(e) => {
+    setStateIndex(Number(e.target.value));
+    setCityIndex(0);
+    setLandmarkIndex(0);
+  }}
+>
+  {states.map((state, index) => (
+    <option key={index} value={String(index)}>
+      {state.name}
+    </option>
+  ))}
+</select>
 
-      <div id="state-name">{selectedState.name}</div>
-      <div id="state-description">{selectedState.description}</div>
+<select
+  id="city"
+  value={String(cityIndex)}
+  onChange={(e) => {
+    setCityIndex(Number(e.target.value));
+    setLandmarkIndex(0);
+  }}
+>
+  {selectedState.city.map((city, index) => (
+    <option key={index} value={String(index)}>
+      {city.name}
+    </option>
+  ))}
+</select>
 
-      <select
-        id="city"
-        value={cityIndex}
-        defaultValue={0}
-        onChange={(e) => {
-          setCityIndex(Number(e.target.value));
-          setLandmarkIndex(0);
-        }}
-      >
-        {selectedState.city.map((city, index) => (
-          <option key={index} value={index}>
-            {city.name}
-          </option>
-        ))}
-      </select>
+<select
+  id="landmark"
+  value={String(landmarkIndex)}
+  onChange={(e) => setLandmarkIndex(Number(e.target.value))}
+>
+  {selectedCity.landmarks.map((landmark, index) => (
+    <option key={index} value={String(index)}>
+      {landmark.name}
+    </option>
+  ))}
+</select>
+
 
       <div id="city-name">{selectedCity.name}</div>
       <div id="city-description">{selectedCity.description}</div>
